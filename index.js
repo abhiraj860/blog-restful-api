@@ -4,4 +4,4 @@ const userRouter = require( );
 
 app.use(express.json());
 app.use('/api', userRouter);
-app.use
+app.use('/api', blogRouter);
