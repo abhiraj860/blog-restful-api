@@ -27,6 +27,6 @@ const Blog = mongoose.model('Blog', BlogSchema);
 module.exports = {
     User,
     Blog
-}
+};
 
 
