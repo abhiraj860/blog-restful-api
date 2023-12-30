@@ -50,6 +50,42 @@ router.get('/', userMiddleware, async (req, res)=>{
     });
 });
 
+// update the blogpost
+router.put('/:id', async (req, res)=>{
+    const id = req.params.id;
+    try {
+        const change = req.body;
+        let find = await Blog.findOneAndUpdate({_id: id}, 
+            {$set: change},
+            {new: true});
+        res.status(200).json({
+            find
+        });
+    } catch (error) {
+        res.status(405).json({
+            msg: "Such blog does not exist"
+        });
+    }
+});
+
+router.delete('/:id', async (req, res)=>{
+    const _id = req.params.id;
+    try{
+        const find = await Blog.findByIdAndDelete(_id);
+        if(find === null) {
+            return res.status(500).json({
+                msg: 'Blog already deleted'
+            });
+        }
+        res.status(200).json({
+            msg: "Your blog is successfully deleted"
+        });
+    } catch(error) {
+        res.status(403).json({
+            msg: "Incorrect blog id"
+        });
+    }
+});
 
 
 module.exports = router;
