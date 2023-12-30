@@ -3,11 +3,12 @@ const app = express();
 const userRouter = require('./routers/user');
 const blogRouter = require('./routers/blog');
 
+const port = 3000;
+
 app.use(express.json());
 app.use('/api/users', userRouter);
 app.use('/api', blogRouter);
 
-const PORT = process.env.PORT;
-app.listen(PORT, ()=>{
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, ()=>{
+    console.log(`Server is running on port ${port}`);
 });
