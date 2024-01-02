@@ -21,12 +21,26 @@ const BlogSchema = new mongoose.Schema({
     }
 });
 
+const CommentSchema = new mongoose.Schema({
+    commentor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    text: String,
+    blogPost: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Blog'
+    }
+});
+
 const User = mongoose.model('User', UserSchema);
 const Blog = mongoose.model('Blog', BlogSchema);
+const Comment = mongoose.model('Comment', CommentSchema);
 
 module.exports = {
     User,
-    Blog
+    Blog,
+    Comment
 };
 
 

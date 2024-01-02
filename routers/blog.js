@@ -51,7 +51,7 @@ router.get('/', userMiddleware, async (req, res)=>{
 });
 
 // update the blogpost
-router.put('/:id', async (req, res)=>{
+router.put('/:id', userMiddleware, async (req, res)=>{
     const id = req.params.id;
     try {
         const change = req.body;
@@ -68,7 +68,7 @@ router.put('/:id', async (req, res)=>{
     }
 });
 
-router.delete('/:id', async (req, res)=>{
+router.delete('/:id', userMiddleware, async (req, res)=>{
     const _id = req.params.id;
     try{
         const find = await Blog.findByIdAndDelete(_id);
